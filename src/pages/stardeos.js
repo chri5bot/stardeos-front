@@ -3,10 +3,9 @@ import RegisterForm from '@/components/ui/RegisterForm/RegisterForm';
 
 function Stardeos() {
   return (
-    <div>
-      <span>Hey im stardeos</span>
+    <>
       <RegisterForm />
-    </div>
+    </>
   );
 }
 

@@ -3,7 +3,7 @@ import styles from './RegisterForm.module.scss';
 
 function RegisterForm() {
   return (
-    <div>
+    <div className={styles.form_container}>
       <DatePicker />
     </div>
   );
