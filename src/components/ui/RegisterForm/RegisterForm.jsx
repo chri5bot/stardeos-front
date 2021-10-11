@@ -1,6 +1,7 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import Datepicker from '@/components/ui/Datepicker/Datepicker';
 import validateBirthdate from '@/helpers/validateBirthdate';
+import reduceYears from '@/helpers/reduceYears';
 import styles from './RegisterForm.module.scss';
 
 function RegisterForm() {
@@ -10,7 +11,6 @@ function RegisterForm() {
         initialValues={{ birthDate: null }}
         validate={(values) => {
           const errors = {};
-          console.log(values);
           if (!values.birthDate) {
             errors.birthDate = 'Date of birth is required';
           }
@@ -34,6 +34,8 @@ function RegisterForm() {
               value={values?.birthDate}
               selected={values?.birthDate}
               onChange={(e) => setFieldValue('birthDate', e)}
+              maxDate={reduceYears(new Date(), 18)}
+              minDate={reduceYears(new Date(), 90)}
               placeholderText="Date of Birth"
             />
             <button type="submit" disabled={isSubmitting}>

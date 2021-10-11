@@ -1,15 +1,10 @@
+import reduceYears from './reduceYears';
+
 function validateBirthdate(date) {
   if (!date) return false;
 
-  let ninetyYearsAgo = new Date();
-  ninetyYearsAgo = ninetyYearsAgo.setFullYear(
-    ninetyYearsAgo.getFullYear() - 90,
-  );
-
-  let eighteenYearsAgo = new Date();
-  eighteenYearsAgo = eighteenYearsAgo.setFullYear(
-    eighteenYearsAgo.getFullYear() - 18,
-  );
+  const ninetyYearsAgo = reduceYears(new Date(), 90);
+  const eighteenYearsAgo = reduceYears(new Date(), 18);
 
   let parsedDate;
 
