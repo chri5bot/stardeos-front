@@ -1,4 +1,5 @@
-import RegisterForm from '@/components/RegisterForm/RegisterForm';
+import Layout from '@/components/common/Layout/Layout';
+import RegisterForm from '@/components/ui/RegisterForm/RegisterForm';
 
 function Stardeos() {
   return (
@@ -10,3 +11,5 @@ function Stardeos() {
 }
 
 export default Stardeos;
+
+Stardeos.Layout = Layout;
