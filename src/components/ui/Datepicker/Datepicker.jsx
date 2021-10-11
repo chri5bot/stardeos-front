@@ -7,13 +7,9 @@ import styles from './Datepicker.module.scss';
 function DatePickerComp(props) {
   const [field, meta] = useField(props);
 
-  const CustomInput = forwardRef((props, ref) => (
-    <input {...props} className={styles.custom_input} ref={ref} />
-  ));
-
   return (
     <>
-      <DatePicker {...field} {...props} customInput={<CustomInput />} />
+      <DatePicker className={styles.custom_input} {...field} {...props} />
       {meta.error && meta.touched && <div>{meta.error}</div>}
     </>
   );
