@@ -29,6 +29,7 @@ function RegisterForm() {
           <Form>
             <Datepicker
               name="birthDate"
+              dateFormat="yyyy-MM-dd"
               value={values?.birthDate}
               selected={values?.birthDate}
               onChange={(e) => setFieldValue('birthDate', e)}
