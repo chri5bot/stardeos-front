@@ -38,7 +38,11 @@ function RegisterForm() {
               minDate={reduceYears(new Date(), 90)}
               placeholderText="Date of Birth"
             />
-            <button type="submit" disabled={isSubmitting}>
+            <button
+              type="submit"
+              className={styles.sign_up}
+              disabled={isSubmitting}
+            >
               Submit
             </button>
           </Form>
