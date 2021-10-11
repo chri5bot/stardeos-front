@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import Datepicker from '@/components/ui/Datepicker/Datepicker';
 import validateBirthdate from '@/helpers/validateBirthdate';
@@ -8,7 +9,7 @@ function RegisterForm() {
   return (
     <div className={styles.form_container}>
       <Formik
-        initialValues={{ birthDate: null }}
+        initialValues={{ birthDate: null, error: false, done: false }}
         validate={(values) => {
           const errors = {};
           if (!values.birthDate) {
@@ -19,11 +20,19 @@ function RegisterForm() {
           }
           return errors;
         }}
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
+        onSubmit={async (values, { setSubmitting, setFieldValue }) => {
+          try {
+            const response = await axios.post(
+              'http://localhost:5001/user/signup',
+              values,
+            );
             setSubmitting(false);
-          }, 400);
+            console.log(response);
+            setFieldValue('done', true);
+          } catch (error) {
+            console.log(error);
+            setFieldValue('error', true);
+          }
         }}
       >
         {({ isSubmitting, values, setFieldValue }) => (
@@ -38,6 +47,8 @@ function RegisterForm() {
               minDate={reduceYears(new Date(), 90)}
               placeholderText="Date of Birth"
             />
+            {values?.error && <span>error</span>}
+            {values?.done && <span>done</span>}
             <button
               type="submit"
               className={styles.sign_up}
