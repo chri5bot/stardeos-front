@@ -4,9 +4,14 @@ import { useField } from 'formik';
 import 'react-datepicker/dist/react-datepicker.css';
 
 function DatePickerComp(props) {
-  const [field] = useField(props);
+  const [field, meta] = useField(props);
 
-  return <DatePicker {...field} {...props} />;
+  return (
+    <>
+      <DatePicker {...field} {...props} />
+      {meta.error && meta.touched && <div>{meta.error}</div>}
+    </>
+  );
 }
 
 export default DatePickerComp;

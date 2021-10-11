@@ -1,21 +1,22 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-
 import Datepicker from '@/components/ui/Datepicker/Datepicker';
-
+import validateBirthdate from '@/helpers/validateBirthdate';
 import styles from './RegisterForm.module.scss';
 
 function RegisterForm() {
   return (
     <div className={styles.form_container}>
       <Formik
-        initialValues={{ birthDate: new Date() }}
+        initialValues={{ birthDate: null }}
         validate={(values) => {
           const errors = {};
           console.log(values);
           if (!values.birthDate) {
-            errors.birthDate = 'Required';
+            errors.birthDate = 'Date of birth is required';
           }
-          // TODO: add here the date validation
+          if (!validateBirthdate(values.birthDate)) {
+            errors.birthDate = 'Date of birth is out of range';
+          }
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
@@ -33,8 +34,8 @@ function RegisterForm() {
               value={values?.birthDate}
               selected={values?.birthDate}
               onChange={(e) => setFieldValue('birthDate', e)}
+              placeholderText="Date of Birth"
             />
-            <ErrorMessage name="birthDate" component="div" />
             <button type="submit" disabled={isSubmitting}>
               Submit
             </button>

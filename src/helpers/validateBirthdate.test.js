@@ -16,13 +16,13 @@ describe('validateBirthdate()', () => {
 
     expect(validateBirthdate(birthDate)).toBe(true);
   });
-  it('should return false if the date is older than 90 years', () => {
+  it('should return false if the date is older than 91 years', () => {
     let birthDate = new Date();
     birthDate = birthDate.setFullYear(birthDate.getFullYear() - 91);
 
     expect(validateBirthdate(birthDate)).toBe(false);
   });
-  it('should return false if the date is less than 18 years', () => {
+  it('should return false if the date is less than 15 years', () => {
     let birthDate = new Date();
     birthDate = birthDate.setFullYear(birthDate.getFullYear() - 15);
 

@@ -11,7 +11,17 @@ function validateBirthdate(date) {
     eighteenYearsAgo.getFullYear() - 18,
   );
 
-  if (date >= ninetyYearsAgo && date <= eighteenYearsAgo) return true;
+  let parsedDate;
+
+  if (!isNaN(parseFloat(date)) && isFinite(date)) {
+    parsedDate = date;
+  } else {
+    parsedDate = Date.parse(date);
+  }
+
+  if (parsedDate >= ninetyYearsAgo && parsedDate < eighteenYearsAgo) {
+    return true;
+  }
 
   return false;
 }
