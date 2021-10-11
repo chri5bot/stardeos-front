@@ -15,9 +15,9 @@ function RegisterForm() {
           if (!values.birthDate) {
             errors.birthDate = 'Date of birth is required';
           }
-          // if (!validateBirthdate(values.birthDate)) {
-          //   errors.birthDate = 'Date of birth is out of range';
-          // }
+          if (!validateBirthdate(values.birthDate)) {
+            errors.birthDate = 'Date of birth is out of range';
+          }
           return errors;
         }}
         onSubmit={async (values, { setSubmitting, setFieldValue }) => {
@@ -45,8 +45,8 @@ function RegisterForm() {
               value={values?.birthDate}
               selected={values?.birthDate}
               onChange={(e) => setFieldValue('birthDate', e)}
-              // maxDate={reduceYears(new Date(), 18)}
-              // minDate={reduceYears(new Date(), 90)}
+              maxDate={reduceYears(new Date(), 18)}
+              minDate={reduceYears(new Date(), 90)}
               placeholderText="Date of Birth"
             />
             {values?.error && <span>error</span>}
